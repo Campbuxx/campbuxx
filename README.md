@@ -1,0 +1,2 @@
+# campbuxx
+Campus Information Platform
