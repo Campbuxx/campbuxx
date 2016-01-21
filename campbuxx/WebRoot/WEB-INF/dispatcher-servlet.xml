@@ -17,7 +17,7 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-	<!-- 配置对静态文件的访问 -->
+	<!-- access static files -->
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/images/**" location="/resources/images/" />
@@ -26,7 +26,7 @@
 	<mvc:resources mapping="/upload/**" location="/resources/upload/" />
 	<mvc:annotation-driven />
 
-	<!-- 自动扫描包 -->
+	<!-- scan package -->
 	<context:component-scan base-package="com.campbuxx">
 		<context:include-filter type="regex"
 			expression="com.campbuxx.dao.*" />
@@ -39,7 +39,7 @@
 	</context:component-scan>
 
 
-	<!-- 视图解释类 -->
+	<!-- view resolver -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -60,7 +60,7 @@
 	</bean>
 
 
-	<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
+	<!-- data source  -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<!-- Connection Info -->
@@ -82,13 +82,13 @@
 	</bean>
 
 
-	<!-- mybatis配置 -->
+	<!-- mybatis configuration -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>
 
-	<!-- 事务管理器配置,单数据源事务 -->
+	<!-- transaction manager,single source transaction -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
@@ -110,7 +110,7 @@
 	</tx:advice>
 
 
-	<!-- 配置上传文件大小 -->
+	<!-- config the size of upload files -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="5242880" />
@@ -121,7 +121,7 @@
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
-				<!--遇到MaxUploadSizeExceededException异常时，自动跳转到error_fileupload.jsp页面-->
+				<!-- when met MaxUploadSizeExceededException，auto jumper to error_fileupload.jsp-->
 				<prop
 					key="org.springframework.web.multipart.MaxUploadSizeExceededException">index</prop>
 			</props>
