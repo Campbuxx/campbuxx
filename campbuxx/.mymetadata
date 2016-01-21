@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="campbuxx"
+  id="myeclipse.1374545994289"
+  context-root="/campbuxx"
+  j2ee-spec="5.0"
+  archive="campbuxx.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

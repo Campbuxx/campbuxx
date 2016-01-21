@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- 每个定义的任务都要在这里进行引用才能运行 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="BusinessTestTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 定义我们要运行的类，可以使用注入定制一些参数 -->
+	<bean id="BusinessTestTime" class="com.campbuxx.util.Timer">
+		<property name="para" value="Spring Timer using " />
+	</bean>
+	
+	<!-- 引用，配置要运行的方法 -->
+	<bean id="BusinessTestDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="BusinessTestTime" />
+		</property>
+		<property name="concurrent" value="false" />
+		<property name="targetMethod" value="run" />
+	</bean>
+	
+	<!-- 引用，定制调用间隔，时间正则查阅：http://www.cnblogs.com/loveLearning/archive/2012/06/05/2536697.html -->
+	<bean id="BusinessTestTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="BusinessTestDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/10 * * * ?</value>
+		</property>
+	</bean>
+	
+	
+	
+</beans>
