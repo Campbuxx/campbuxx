@@ -4,9 +4,9 @@ public class Category
 {
     private int id;
 
-    private String name;
+    private String category;
 
-    private String desc;
+    private String disc;
 
     public int getId()
     {
@@ -18,24 +18,26 @@ public class Category
         this.id = id;
     }
 
-    public String getName()
+    public String getCategory()
     {
-        return name;
+        return category;
     }
 
-    public void setName(String name)
+    public void setCategory(String category)
     {
-        this.name = name;
+        this.category = category;
     }
 
-    public String getDesc()
+    public String getDisc()
     {
-        return desc;
+        return disc;
     }
 
-    public void setDesc(String desc)
+    public void setDisc(String disc)
     {
-        this.desc = desc;
+        this.disc = disc;
     }
+
+    
 
 }

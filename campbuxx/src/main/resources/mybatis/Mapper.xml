@@ -4,38 +4,34 @@
 <mapper namespace="com.campbuxx.db">
 	
 	
-	
-	<!-- Restaurant -->
-	
-	<resultMap type="Restaurant" id="restaurantResultMap">
-		<result property="id" column="RES_ID" />
-		<result property="name" column="RES_NAME" />
-		<result property="rate" column="RES_RATE" />
-		<result property="distance" column="RES_DISTANCE" />
-		<result property="category" column="RES_CATEGORY" />
-		<result property="lastTime" column="RES_LAST_TIME" />
-		<result property="fav" column="RES_FAV" />
-		<result property="cost" column="RES_COST" />
-	</resultMap>
-	
-	
-	
 	<!-- Category -->
 	
 	<resultMap type="Category" id="categoryResultMap">
 		<result property="id" column="C_ID" />
-		<result property="name" column="C_NAME" />
-		<result property="desc" column="C_DESC" />
+		<result property="category" column="C_CATEGORY" />
+		<result property="disc" column="C_DISC" />
 	</resultMap>
 	
 	
 	<!-- User -->
 	
 	<resultMap type="User" id="userResultMap">
-		<result property="id" column="USER_ID" />
-		<result property="name" column="USER_NAME" />
-		<result property="nId" column="USER_sN_ID" />
-		<result property="email" column="USER_EMAIL" />
+		<result property="firstName" column="USER_FIRST_NAME" />
+		<result property="lastName" column="USER_LAST_NAME" />
+		<result property="studnetID" column="USER_STUDENT_ID" />
+		<result property="password" column="USER_PASSWORD" />
+		<result property="phone" column="USER_PHONE" />
+	</resultMap>
+	
+	<!-- Post -->
+	
+	<resultMap type="Post" id="postResultMap">
+		<result property="id" column="P_ID" />
+		<result property="tltle" column="P_TITLE" />
+		<result property="category" column="P_CATEGORY" />
+		<result property="content" column="P_CONTENT" />
+		<result property="createDate" column="P_CREATE_DATE" />
+		<result property="studentID" column="P_STUDENT_ID" />
 	</resultMap>
 	
 	
@@ -44,68 +40,20 @@
 
 
 	
-	<!-- index select -->
+
+	<select id="getUser" resultMap="userResultMap" parameterType="User">
+		select * from tb_user where 1=1
+			<if test="studentID != null">
+				and user_student_id = #studentID#
+			</if>
+			<if test="password != null">
+				and user_password = #password#
+			</if>
 	
-	<select id="selectRestaurants" parameterType="Restaurant" resultMap="restaurantResultMap">
-		select * from tb_restaurant where
-			1=1
-			<if test="id != null">
-				and res_id = #id#
-			</if>
-			
-			<if test="rate != null">
-				and res_rate = #rate#
-			</if>
-			<if test="category != null">
-				and res_category = #category#
-			</if>
-			<if test="name != null">
-				and res_name = #name#
-			</if>
-			<if test="distance != null">
-				<![CDATA[ and res_distance <= #distance# ]]>
-			</if>
-					
 	</select>
 	
-	<select id="selectRestaurantsByLearning" parameterType="Restaurant" resultMap="restaurantResultMap">
-		select * from tb_restaurant where
-			1=1
-			<if test="id != null">
-				and res_id = #id#
-			</if>
-			
-			<if test="rate != null">
-				and res_rate = #rate#
-			</if>
-			<if test="category != null">
-				and res_category = #category#
-			</if>
-			<if test="name != null">
-				and res_name = #name#
-			</if>
-			<if test="distance != null">
-				<![CDATA[ and res_distance <= #distance# ]]>
-			</if>
-			<if test="lastTime != null">
-				<![CDATA[ and res_last_time <= #lastTime# ]]>
-			</if>
-			<if test="cost != null">
-				<![CDATA[ and res_lcost <= #cost# ]]>
-			</if>
-			order by res_fav DESC
-					
-	</select>
-	
-	<select id="selectCategory" parameterType="Category" resultMap="categoryResultMap">
-		select * from tb_category where
-			1=1
-			<if test="id != null">
-				c_id = #id#
-			</if>
-			<if test="name != null">
-				c_name = #name#
-			</if>
+	<select id="getCategory"  resultMap="categoryResultMap">
+		select * from tb_category 		
 	</select>
 	
 	

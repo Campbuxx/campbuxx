@@ -28,31 +28,7 @@ public class AjaxController
     @Autowired
     private HomeService homeService;
 
-    /**
-     * ajax get data test demo
-     * 
-     * @return
-     */
-    @RequestMapping(value = "/getText", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, Object> getDataText(HttpServletRequest request, Model model)
-    {
-        String distance = request.getParameter("distance");
-        String a = "";
-        if (distance != null)
-        {
-            a = homeService.getRandom(Integer.parseInt(distance));
-        }else{
-            a = homeService.getRandom(null);
-        }
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("result", a);
-        map.put("success", true);
-        logger.info("success to get data__Ajax waiting for response....");
-        System.out.println("success to get data__Ajax waiting for response....");
-        return map;
-    }
-
+    
 
     @RequestMapping( { "/ajaxUpload" })
     public String showUpload(Model model) throws IOException

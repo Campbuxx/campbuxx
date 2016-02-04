@@ -7,9 +7,9 @@
 	<properties resource='jdbc.properties' />
 	-->
 	<typeAliases>
-		<typeAlias alias="Restaurant" type="com.campbuxx.pojo.Restaurant" />
 		<typeAlias alias="Category" type="com.campbuxx.pojo.Category" />
 		<typeAlias alias="User" type="com.campbuxx.pojo.User" />
+		<typeAlias alias="Post" type="com.campbuxx.pojo.Post" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Mapper.xml" />

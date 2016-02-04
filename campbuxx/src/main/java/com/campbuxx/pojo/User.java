@@ -3,42 +3,53 @@ package com.campbuxx.pojo;
 public class User
 {
 
-    private Integer id ;
-    private String name ;
-    private String nId ;
-    private String email;
-    public Integer getId()
-    {
-        return id;
-    }
-    public void setId(Integer id)
-    {
-        this.id = id;
-    }
-    public String getName()
-    {
-        return name;
-    }
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-    public String getnId()
-    {
-        return nId;
-    }
-    public void setnId(String nId)
-    {
-        this.nId = nId;
-    }
-    public String getEmail()
-    {
-        return email;
-    }
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
+    private String firstName ;
+    private String lastName ;
+    private Integer studentID;
+    private String password;
+    private String phone ;
     
+    
+    public String getPhone()
+    {
+        return phone;
+    }
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
+    }
+    public String getFirstName()
+    {
+        return firstName;
+    }
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+    public String getLastName()
+    {
+        return lastName;
+    }
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
+    }
+    public Integer getStudentID()
+    {
+        return studentID;
+    }
+    public void setStudentID(Integer studentID)
+    {
+        this.studentID = studentID;
+    }
+    public String getPassword()
+    {
+        return password;
+    }
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+   
     
 }

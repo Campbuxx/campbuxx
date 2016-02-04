@@ -6,38 +6,24 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.campbuxx.pojo.Category;
-import com.campbuxx.pojo.Restaurant;
+import com.campbuxx.pojo.User;
+
 
 
 
 @Repository
 public class HomeDao extends SqlSessionDaoSupport {
 	
-    /**
-     * select restaurants
-     * @param res
-     * @return
-     */
-	public List<Restaurant> getRestaurants(Restaurant res ){
-		return getSqlSession().selectList("com.rts.db.selectRestaurants" , res);
-	}
+   public User getUser(User user){
+       return getSqlSession().selectOne("com.campbuxx.db.getUser", user);
+   }
 	
 	/**
-     * select restaurants For learning
-     * @param res
-     * @return
-     */
-    public List<Restaurant> getRestaurantsForLearning(Restaurant res ){
-        return getSqlSession().selectList("com.rts.db.selectRestaurantsByLearning" , res);
-    }
-	
-	/**
-	 * select category
-	 * @param c
+	 *get category
 	 * @return
 	 */
-	public List<Category> getCategory(Category c){
-	    return getSqlSession().selectList("com.rts.db.selectCategory" , c);
+	public List<Category> getCategory(){
+	    return getSqlSession().selectList("com.campbuxx.db.getCategory");
 	}
 
 }
