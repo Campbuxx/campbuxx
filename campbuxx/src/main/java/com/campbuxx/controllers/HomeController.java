@@ -51,10 +51,13 @@ public class HomeController {
 	    User user = new User();
 	    user.setStudentID(Integer.parseInt(sid));
 	    user.setPassword(pwd);
+	    model.addAttribute("sid", sid);
 	    
 	    if(homeService.validateUser(user)){
+	        
 	        return "index";
 	    }else{
+	        model.addAttribute("message", "user not exist or password incorrect");
 	        return "login";
 	    }
 	}
