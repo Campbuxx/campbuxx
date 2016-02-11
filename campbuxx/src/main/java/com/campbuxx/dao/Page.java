@@ -13,7 +13,7 @@ public class Page {
 	private Integer page ; //current page num
 	private Integer previous;
 	private Integer next;
-	private Integer count; //count of pages
+	private Integer count; //count of items
 	
 	private Integer rowsPerPage ;
 	private Integer startRow ;
@@ -27,11 +27,19 @@ public class Page {
 	}
 
 	public void setPageCount() {
-		pageCount = (count%rowsPerPage)>0?(1+count/rowsPerPage):(count/rowsPerPage);
+		this.count = (count%rowsPerPage)>0?(1+count/rowsPerPage):(count/rowsPerPage);
 	}
 
 
-
+	public void buildPage(int pageNum , int totalNum, int rowsPerPage){
+	    this.rowsPerPage = rowsPerPage;
+	    this.page = pageNum ;
+	    this.count = totalNum;
+	    setStartRow();
+	    setEndRow();
+	    setPrevious();
+	    setNext();
+	}
 
 	public Page() {
 		rowsPerPage = 0 ;
@@ -58,8 +66,7 @@ public class Page {
 		return startRow;
 	}
 	public void setStartRow() {
-		startRow =  (page - 1)*rowsPerPage+1;
-		startRow = startRow -1;
+		startRow =  (page - 1)*rowsPerPage;
 	}
 	public Integer getEndRow() {
 		return endRow;

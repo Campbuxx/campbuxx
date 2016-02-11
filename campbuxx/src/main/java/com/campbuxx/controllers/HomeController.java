@@ -2,6 +2,7 @@ package com.campbuxx.controllers;
 
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 
 import com.campbuxx.controllers.HomeController;
+import com.campbuxx.pojo.Post;
 import com.campbuxx.pojo.User;
 import com.campbuxx.services.HomeService;
 
@@ -54,14 +56,42 @@ public class HomeController {
 	    model.addAttribute("sid", sid);
 	    
 	    if(homeService.validateUser(user)){
-	        
 	        return "index";
 	    }else{
 	        model.addAttribute("message", "user not exist or password incorrect");
 	        return "login";
 	    }
 	}
-
+	
+	/**
+	 * Goto list page by page number
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/listPage")
+	public String showListPage(HttpServletRequest request,Model model){
+	    Integer pageNum = Integer.parseInt(request.getParameter("pageNum"));
+	    Map<Integer,Object> map = homeService.getList(pageNum);
+	    model.addAttribute("list", map.get(1));
+	    model.addAttribute("pageCount", map.get(2));
+	    model.addAttribute("pageNum", pageNum);
+	    return "listPage";
+	}
+	
+	/**
+	 * Goto post detail page
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/postDetail")
+	public String showItemDetail(HttpServletRequest request,Model model){
+	    Integer id = Integer.parseInt(request.getParameter("id"));
+	    Post post = homeService.getPostDetail(id);
+	    model.addAttribute("post", post);
+	    return "postDetail";
+	}
 
 	/**
 	 * admin_index demo

@@ -18,7 +18,7 @@
 	<resultMap type="User" id="userResultMap">
 		<result property="firstName" column="USER_FIRST_NAME" />
 		<result property="lastName" column="USER_LAST_NAME" />
-		<result property="studnetID" column="USER_STUDENT_ID" />
+		<result property="studentID" column="USER_STUDENT_ID" />
 		<result property="password" column="USER_PASSWORD" />
 		<result property="phone" column="USER_PHONE" />
 	</resultMap>
@@ -27,7 +27,7 @@
 	
 	<resultMap type="Post" id="postResultMap">
 		<result property="id" column="P_ID" />
-		<result property="tltle" column="P_TITLE" />
+		<result property="title" column="P_TITLE" />
 		<result property="category" column="P_CATEGORY" />
 		<result property="content" column="P_CONTENT" />
 		<result property="createDate" column="P_CREATE_DATE" />
@@ -44,10 +44,10 @@
 	<select id="getUser" resultMap="userResultMap" parameterType="User">
 		select * from tb_user where 1=1
 			<if test="studentID != null">
-				and user_student_id = #studentID#
+				and user_student_id = #{studentID}
 			</if>
 			<if test="password != null">
-				and user_password = #password#
+				and user_password = #{password}
 			</if>
 	
 	</select>
@@ -56,6 +56,16 @@
 		select * from tb_category 		
 	</select>
 	
+	<select id="countItems"  resultType="int">
+		select count(*) from tb_posts 		
+	</select>
 	
+	<select id="getPostList"  resultMap="postResultMap" parameterType="com.campbuxx.dao.Page">
+		select * from tb_posts order by p_create_date Limit #{startRow},#{endRow}
+	</select>
+	
+	<select id="getPostDetail" resultMap="postResultMap" parameterType="int">
+		select * from tb_posts where p_id = #{id}
+	</select>
     
 </mapper>
