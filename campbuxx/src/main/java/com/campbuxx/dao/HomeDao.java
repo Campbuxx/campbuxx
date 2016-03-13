@@ -57,4 +57,17 @@ public class HomeDao extends SqlSessionDaoSupport {
 	    post.setUser(user);
 	    return post;
 	}
+	
+	/**
+	 * save the post 
+	 * @param post
+	 * @return
+	 */
+	public Boolean savePost(Post post){
+	    Integer a = getSqlSession().insert("com.campbuxx.db.savePost", post);
+	    if(a >0){
+	        return true;
+	    }
+	    return false ;
+	}
 }

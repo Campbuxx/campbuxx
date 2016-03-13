@@ -2,15 +2,19 @@ package com.campbuxx.controllers;
 
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 
@@ -46,8 +50,8 @@ public class HomeController {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping( { "/login" })
-	public String showAdminLoginPage(HttpServletRequest request,Model model) throws IOException {
+	@RequestMapping( value ={ "/login" }, method = RequestMethod.POST)
+	public String showAdminLoginPage(HttpServletRequest request,Model model, HttpSession session) throws IOException {
 	    String sid = request.getParameter("sid");
 	    String pwd = request.getParameter("pwd");
 	    User user = new User();
@@ -56,6 +60,7 @@ public class HomeController {
 	    model.addAttribute("sid", sid);
 	    
 	    if(homeService.validateUser(user)){
+	        session.setAttribute("student_ID", sid);
 	        return "index";
 	    }else{
 	        model.addAttribute("message", "user not exist or password incorrect");
@@ -69,8 +74,11 @@ public class HomeController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/listPage")
-	public String showListPage(HttpServletRequest request,Model model){
+	@RequestMapping(value ="/listPage",method = RequestMethod.POST)
+	public String showListPage(HttpServletRequest request,Model model,HttpSession session){
+	    if(!checkLogin( session)){
+	        return "login";
+	    }
 	    Integer pageNum = Integer.parseInt(request.getParameter("pageNum"));
 	    Map<Integer,Object> map = homeService.getList(pageNum);
 	    model.addAttribute("list", map.get(1));
@@ -85,12 +93,41 @@ public class HomeController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/postDetail")
-	public String showItemDetail(HttpServletRequest request,Model model){
+	@RequestMapping(value ="/postDetail" , method = RequestMethod.GET) 
+	public String showItemDetail(HttpServletRequest request,Model model,HttpSession session){
+	    if(!checkLogin( session)){
+            return "login";
+        }
 	    Integer id = Integer.parseInt(request.getParameter("id"));
 	    Post post = homeService.getPostDetail(id);
 	    model.addAttribute("post", post);
 	    return "postDetail";
+	}
+	
+	
+	@RequestMapping(value = "/savePost" , method = RequestMethod.POST) 
+	@ResponseBody
+	public Map<String, Object> savePost(HttpServletRequest request,Model model,HttpSession session){
+	    Post post = new Post();
+	    post.setCategory(Integer.parseInt(request.getParameter("category")));
+	    post.setContent(request.getParameter("content"));
+	    post.setStudentID(Integer.parseInt(request.getParameter("studentID")));
+	    post.setTitle(request.getParameter("title"));
+	    post.setStudentID(Integer.parseInt((String) session.getAttribute("student_ID")));
+	    Boolean result = homeService.savePost(post);
+	    String message = "" ;
+	    boolean success ;
+	    if(result){
+	        message = "information saved";
+	        success = true ;
+	    }else{
+	        message = "error occur when saving";
+	        success = false ;
+	    }
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("message", message);
+	    map.put("success", success);
+	    return map ;
 	}
 
 	/**
@@ -105,6 +142,12 @@ public class HomeController {
 		return "/admin/adminindex";
 	}
 	
-	
+	public boolean checkLogin(HttpSession session){
+	    String test = (String) session.getAttribute("student_ID");
+	    if(test == null || test.equals("")){
+	        return false ;
+	    }
+	    return true ;
+	}
 
 }

@@ -53,8 +53,18 @@ public class HomeService
         return map ;
     }
     
+    /**
+     * get the item detail
+     * @param id
+     * @return
+     */
     public Post getPostDetail(Integer id){
         return hDao.getPostDetail(id);
+    }
+    
+    public boolean savePost(Post post){
+        Boolean result = hDao.savePost(post);
+        return result ;
     }
 
 }

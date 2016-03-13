@@ -67,5 +67,10 @@
 	<select id="getPostDetail" resultMap="postResultMap" parameterType="int">
 		select * from tb_posts where p_id = #{id}
 	</select>
+	
+	<insert id="savePost" parameterType="Post" resultType="int">
+		insert into tb_posts ( p_id, p_title, p_category, p_content, p_create_date, p_student_id )
+		values ( 0, #{title}, #{category}, #{content}, NOW(), #{studentID} )
+	</insert>
     
 </mapper>
