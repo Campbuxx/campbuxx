@@ -1,0 +1,364 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body{
+	padding:0;
+	margin:0;
+	background-image:url(../images/back2.png);
+}
+
+.hidden , .ioading
+{
+	display:none;
+}
+
+/*  top */
+
+.head_menu_on
+{
+	float:left;
+	width:130px;
+	height:25px;
+}
+
+.head_menu_on a
+{
+	text-decoration:none;
+	font-family:"楷体", "隶书", "黑体";
+	padding:5px 30px 3px 28px;
+	height:25px;
+	color: #FFF;
+	background:#FFF;
+	background-image: url(../images/back2.png);
+}
+
+
+#top{
+	width:100%;
+	min-width:1024px;
+	height:120px;
+	padding:0;
+	margin:0;
+}
+
+
+#titletop
+{
+	top:0px;
+	width:100%;
+	height:120px;
+	padding:0;
+	margin:0;
+}
+
+#topmain
+{
+	width:1024px;
+	height:120px;
+	background:#09F;
+	background:url(../images/back2.png);
+}
+
+#topmain .welcome{
+	font-size:18px;
+	color:#FFF;
+	position:inherit;
+}
+
+.title
+{
+	padding:0;
+	margin:0;
+	width:100%;
+	height:95px;
+	position: relative;
+	top:20px;
+	left:280px;
+	font-family:"华文楷体", "华文行楷", "宋体";
+	font-size:30px;
+	color: #FFF;
+}
+
+.title span{
+	position:relative;
+	left: -500px;
+}
+
+.navi 
+{
+	float:left;
+	width:130px;
+	height:25px;
+}
+
+.navi a
+{
+	text-decoration:none;
+	font-family:"楷体", "隶书", "黑体";
+	padding:5px 30px 3px 28px;
+	height:25px;
+	color: #600;
+	background:#FFF;
+	background-image:url(../images/button_off.png);
+}
+
+.navi a:hover
+{
+	padding:5px 30px 3px 25px;
+	width:125px;
+	height:25px;
+	color: #F00;
+	background: #600;
+	background-image:url(../images/button_on.png);
+}
+
+
+
+
+
+
+
+/* footer */
+
+
+#footer
+{
+	width:100%;
+	height:50px;
+	bottom: 0px;
+	position:  fixed;
+	background-image: url(../images/back2.png);
+}
+
+#footermain
+{
+	width:1024px;
+	height:20px;
+	color:#D6D5BE;
+	border-top:2px solid #600;
+	
+}
+
+#footermain a
+{
+	color:#FFF;
+}
+
+
+/*  main */
+
+#main{
+	width:100%;
+	min-width:1024px;
+	
+}
+
+#content{
+	width:1024px;
+	height: auto;
+	border: 1px solid #600;
+	background-image: url(../images/back.png);
+}
+
+
+.box{
+	width:100%;
+	float:left;
+	height:100%;
+		margin-bottom: 50px;
+}
+
+/**  =======   list table  ========= **/
+#list_table{
+	width: 90%;
+	border-bottom:40px;
+	border-collapse:collapse;
+	color:#EAE7DB;
+}
+
+#list_table .table_title{
+	height: 70px;
+	width: 2000px;
+	font-size:24px;
+	color:#EAE7DB;
+	
+}
+
+#list_table .table_item{
+	font-size:20px;
+	color:#FFF;
+	height: 40px;
+	border:0px;
+	
+}
+
+#list_table .table_item a{ 
+	text-decoration: none;
+	color:#FFF;
+}
+
+#list_table .table_item a:hover{ 
+	color: #66C;
+}
+
+
+.even{
+	background: url(../images/back.png);
+}
+
+.page, .page a{
+	font-size:18px;
+	color:#EAE7DB;
+}
+
+/**  =======   add new  ========= **/
+.box .add_table{
+	border-collapse:collapse;
+}
+
+.box .add_table tr{
+	height: 50px;
+	color:#EAE7DB;
+}
+
+.box .add_table tr td{
+	width: 200px ;
+}
+
+.message{
+	color:#EAE7DB;
+	font-size:20px;
+	}
+
+/**  =======   detail   ========= **/
+.detail_box{
+	color: #000;
+	width:100%;
+	float:left;
+	padding-bottom: 60px;
+	background:url(../images/back.png);
+}
+
+.detail_box .de_img{
+	float: left;
+	padding-left: 40px ; 
+}
+
+.detail_box .de_img img{
+	width: 240px ;
+	height: 200px;
+}
+
+.detail_box .de_desc{
+	margin-left: 290px ; 
+	margin_right: 20Px ;
+	padding-bottom: 40px;
+	font-size:18px;
+}
+
+/**  =======   black box  ========= **/
+
+#black_box{
+	display:none;
+	width:100%;
+	height:100%;
+	background: #000;
+	position:fixed;
+	top:0px;
+}
+
+#login_back{
+	display:none;
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0px;
+	margin-top:200px;
+}
+.back , .back a{
+	position: relative;
+	bottom:0px;
+	right:0;
+	height:25px;
+	width:100%;
+	background:#069;
+	color:#FFF;
+}
+
+.back2 , .back2 a{
+	padding-top:0px;
+	position: relative;
+	bottom:0px;
+	right:0;
+	height:15px;
+	width:100%;
+	background:#069;
+	color:#FFF;
+}
+
+.note
+{
+	width:100%;
+	height:30px;
+	border-bottom:1px solid #600;
+	background:url(../images/back.png);
+	color:#600;
+	font-family:"幼圆", "宋体", "华文隶书";
+}
+
+.boxItem
+{
+	width:120px;
+	height:30px;
+	margin-top:30px;
+	margin-left:30px;
+	padding-top:20px;
+	float:left;
+	background:url(../images/back.png);
+	
+}
+
+.select
+{
+	background:url(../images/back2.png);
+}
+
+
+.boxItem a
+{
+	text-decoration:none;
+	font-family:"幼圆", "宋体", "华文隶书";
+	color:#600;
+}
+
+.boxItem a:hover
+{
+	text-decoration:none;
+	font-family:"幼圆", "宋体", "华文隶书";
+	color: #039;
+}
+
+.note span
+{
+	margin-left:20px;
+}
+
+.list , .list a
+{
+	background:url(../images/back.png);
+	width:100%;
+	color: #600;
+	text-decoration: none;
+}
+
+
+.login{
+	display:none;
+	width:350px;
+	height:250px;
+	border:1px solid #600;
+	margin: 5px 10px 5px 0px;
+	background: url(../images/button_off.png);
+}
+
+

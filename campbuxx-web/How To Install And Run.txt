@@ -1,0 +1,11 @@
+1. you must have install tomcat in you local environment,  tomcat 7.0 or above
+
+2. copy the entire folder "campbuxx" into the tomcat/webapps
+
+3. make sure you have install mysql in you local environment, MySQL 5.6 or above
+
+4. create a database named "campbuxx" in you mysql database and tansfer the data into it ( using campbuxx.sql )
+
+5. run the tomcat and using the url ( http://localhost:8080/campbuxx/ ) to access the web page
+
+6. test user : student ID: 12345  password: 12345
